@@ -333,6 +333,7 @@ namespace Minou
             if (flashPattern.HasValue)
             {
                 barIndicator.Pattern = flashPattern.Value;
+                eyes.Mood = flashPattern.Value == IndicatorPattern.Error ? EyeMood.Error : EyeMood.Happy;
                 title.Text = flashTitle;
                 detail.Text = flashDetail ?? "";
                 return;
@@ -340,6 +341,7 @@ namespace Minou
 
             Session focus = store.Focus;
             barIndicator.Pattern = Patterns.Of(agg);
+            eyes.Mood = agg == AgentState.Awaiting ? EyeMood.Alert : agg == AgentState.Working ? EyeMood.Normal : EyeMood.Sleepy;
             if (focus == null)
             {
                 title.Text = "Claude Code";

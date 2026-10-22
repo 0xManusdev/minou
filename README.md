@@ -19,7 +19,8 @@ un seul `.exe` natif, aucune dépendance, compilé avec le compilateur C# fourni
   son terminal revient au premier plan (Windows Terminal, console classique, VS Code, IDE JetBrains…).
 - **Compteur** de sessions à droite, sessions multiples agrégées (la validation en attente passe en priorité).
 - **Deux petits yeux** à côté du compteur, qui clignent comme un humain : paupière qui tombe vite et remonte plus
-  lentement, intervalles irréguliers de 2 à 7 s, parfois un double clignement.
+  lentement, intervalles irréguliers de 2 à 7 s, parfois un double clignement. Leur expression suit l'état :
+  écarquillés quand une validation t'attend, « ^ ^ » quand c'est terminé, « > < » en cas d'erreur, ensommeillés au repos.
 - **Icône animée dans la zone de notification** : clic gauche → saute à la session qui attend une validation ;
   clic droit → menu (sessions, écran, sons, options).
 - **Sons Windows** optionnels quand Claude a besoin de toi ou termine.
