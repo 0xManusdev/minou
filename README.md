@@ -38,7 +38,14 @@ Le dépôt est aussi une marketplace de plugins : le plugin embarque l'exécutab
 du reste (rien n'est écrit dans `settings.json`, et `/plugin uninstall` retire tout proprement).
 
 ```
-/plugin install minou --marketplace <owner>/<repo>
+/plugin install minou --marketplace 0xManusdev/minou
+```
+
+Ou en deux temps, depuis un terminal :
+
+```
+claude plugin marketplace add 0xManusdev/minou
+claude plugin install minou@minou
 ```
 
 Depuis une copie locale du dépôt :
