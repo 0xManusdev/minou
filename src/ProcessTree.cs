@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>One-shot snapshot of the process table, used to walk from the hook up to Claude Code and its terminal.</summary>
     internal sealed class ProcessTree
@@ -20,13 +20,13 @@ namespace NotchAgent
         private static readonly HashSet<string> Intermediates = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
             "bash.exe", "sh.exe", "zsh.exe", "cmd.exe", "powershell.exe", "pwsh.exe", "conhost.exe",
-            "openconsole.exe", "node.exe", "notchagent.exe", "wsl.exe", "wslhost.exe"
+            "openconsole.exe", "node.exe", "minou.exe", "wsl.exe", "wslhost.exe"
         };
 
         // Never treat these as "the terminal": focusing them would open the wrong thing.
         private static readonly HashSet<string> NotHosts = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "explorer.exe", "svchost.exe", "services.exe", "wininit.exe", "winlogon.exe", "notchagent.exe"
+            "explorer.exe", "svchost.exe", "services.exe", "wininit.exe", "winlogon.exe", "minou.exe"
         };
 
         public static ProcessTree Capture()

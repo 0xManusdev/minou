@@ -6,21 +6,21 @@ using System.IO;
 using System.Text;
 using System.Web.Script.Serialization;
 
-namespace NotchAgent
+namespace Minou
 {
     internal static class Paths
     {
         public static readonly string DataDir = Path.Combine(
-            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "NotchAgent");
+            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Minou");
 
         public static string SettingsFile { get { return Path.Combine(DataDir, "settings.json"); } }
         public static string SessionsFile { get { return Path.Combine(DataDir, "sessions.json"); } }
-        public static string LogFile { get { return Path.Combine(DataDir, "notch-agent.log"); } }
+        public static string LogFile { get { return Path.Combine(DataDir, "minou.log"); } }
 
         /// <summary>Per-user pipe; the default pipe DACL only lets the creating user write to it.</summary>
-        public static string PipeName { get { return "NotchAgent." + Environment.UserName; } }
+        public static string PipeName { get { return "Minou." + Environment.UserName; } }
 
-        public const string AppMutex = "Local\\NotchAgent.App";
+        public const string AppMutex = "Local\\Minou.App";
     }
 
     internal static class Log

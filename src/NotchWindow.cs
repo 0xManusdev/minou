@@ -11,7 +11,7 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using Screen = System.Windows.Forms.Screen;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>
     /// The notch: a borderless, click-through, always-on-top window pinned to the top centre of a monitor.
@@ -83,7 +83,7 @@ namespace NotchAgent
             this.settings = settings;
             springs = new[] { w, h, outer, inner, barAlpha, listAlpha };
 
-            Title = "NotchAgent";
+            Title = "Minou";
             WindowStyle = WindowStyle.None;
             AllowsTransparency = true;
             Background = Brushes.Transparent;

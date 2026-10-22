@@ -7,7 +7,7 @@ using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Threading;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>
     /// Notification-area icon: a tiny notch tile running the same grid animation as the notch, a tooltip summary,
@@ -74,7 +74,7 @@ namespace NotchAgent
                         using (var key = root.OpenSubKey(name, true))
                         {
                             var path = key == null ? null : key.GetValue("ExecutablePath") as string;
-                            if (path == null || !path.EndsWith(@"\NotchAgent.exe", StringComparison.OrdinalIgnoreCase)) continue;
+                            if (path == null || !path.EndsWith(@"\Minou.exe", StringComparison.OrdinalIgnoreCase)) continue;
                             key.SetValue("IsPromoted", 1, Microsoft.Win32.RegistryValueKind.DWord);
                             return Done();
                         }
@@ -191,8 +191,8 @@ namespace NotchAgent
             int n = store.Sessions.Count;
             int waiting = store.Sessions.Count(s => s.Effective == AgentState.Awaiting);
             int working = store.Sessions.Count(s => s.Effective == AgentState.Working);
-            string text = n == 0 ? "NotchAgent · aucune session"
-                : "NotchAgent · " + n + (n > 1 ? " sessions" : " session")
+            string text = n == 0 ? "Minou · aucune session"
+                : "Minou · " + n + (n > 1 ? " sessions" : " session")
                   + (waiting > 0 ? " · " + waiting + " à valider" : "")
                   + (working > 0 ? " · " + working + " en cours" : "");
             return text.Length > max ? text.Substring(0, max) : text;
@@ -203,8 +203,8 @@ namespace NotchAgent
         private void BuildMenu()
         {
             menu.Items.Clear();
-            menu.Items.Add(new ToolStripLabel("NotchAgent") { Font = new Font(menu.Font, FontStyle.Bold) });
-            menu.Items.Add(new ToolStripLabel(Summary(120).Replace("NotchAgent · ", "")) { ForeColor = Color.FromArgb(150, 150, 150) });
+            menu.Items.Add(new ToolStripLabel("Minou") { Font = new Font(menu.Font, FontStyle.Bold) });
+            menu.Items.Add(new ToolStripLabel(Summary(120).Replace("Minou · ", "")) { ForeColor = Color.FromArgb(150, 150, 150) });
 
             if (store.Sessions.Count > 0)
             {
@@ -264,7 +264,7 @@ namespace NotchAgent
                 try { Process.Start(new ProcessStartInfo(Paths.LogFile) { UseShellExecute = true }); }
                 catch (Exception ex) { Log.Write("open log: " + ex.Message); }
             }));
-            menu.Items.Add(new ToolStripMenuItem("Quitter NotchAgent", null, (o, e) => quit()));
+            menu.Items.Add(new ToolStripMenuItem("Quitter Minou", null, (o, e) => quit()));
             Recolor(menu.Items);
         }
 

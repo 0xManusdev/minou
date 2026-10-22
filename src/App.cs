@@ -10,7 +10,7 @@ using System.Windows;
 using System.Windows.Media;
 using System.Windows.Threading;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>Wires the pieces together and decides when the app leaves.</summary>
     internal sealed class AppCore
@@ -137,7 +137,7 @@ namespace NotchAgent
         }
     }
 
-    /// <summary>Receives one JSON line per hook event on \\.\pipe\NotchAgent.&lt;user&gt;, writable by the current user only.</summary>
+    /// <summary>Receives one JSON line per hook event on \\.\pipe\Minou.&lt;user&gt;, writable by the current user only.</summary>
     internal sealed class PipeServer
     {
         private const int Listeners = 4;

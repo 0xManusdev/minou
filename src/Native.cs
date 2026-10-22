@@ -2,7 +2,7 @@ using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>Win32 entry points used across the app. Grouped here so the rest of the code stays managed.</summary>
     internal static class Native

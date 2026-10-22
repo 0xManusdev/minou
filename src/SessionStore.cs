@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Threading;
 
-namespace NotchAgent
+namespace Minou
 {
     internal enum AgentState { Idle, Working, Awaiting }
 

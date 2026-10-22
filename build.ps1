@@ -1,4 +1,4 @@
-﻿# Builds bin\NotchAgent.exe with the C# compiler that ships with Windows (.NET Framework 4.8). No SDK needed.
+﻿# Builds bin\Minou.exe with the C# compiler that ships with Windows (.NET Framework 4.8). No SDK needed.
 [CmdletBinding()]
 param()
 
@@ -47,8 +47,10 @@ for ($i = 0; $i -lt $sizes.Count; $i++) {
 }
 foreach ($p in $pngs) { $w.Write($p) }
 $w.Flush()
-$icoPath = Join-Path $out 'NotchAgent.ico'
+$icoPath = Join-Path $out 'Minou.ico'
 [System.IO.File]::WriteAllBytes($icoPath, $ico.ToArray())
+# Same artwork as the plugin's listing icon (square PNG, 512 px).
+[System.IO.File]::WriteAllBytes((Join-Path $root 'plugins\minou\.claude-plugin\icon.png'), (New-IconPng 512))
 
 # --- Compile -------------------------------------------------------------------------------------------
 $wpf = Join-Path $fw 'WPF'
@@ -59,10 +61,16 @@ $refs = @(
 ) | ForEach-Object { "/reference:$_" }
 
 $sources = Get-ChildItem (Join-Path $root 'src') -Filter *.cs | ForEach-Object { $_.FullName }
-$exe = Join-Path $out 'NotchAgent.exe'
+$exe = Join-Path $out 'Minou.exe'
 
 & $csc /nologo /target:winexe /platform:anycpu /optimize+ /utf8output /codepage:65001 `
     "/out:$exe" "/win32icon:$icoPath" "/win32manifest:$(Join-Path $root 'src\app.manifest')" `
     $refs $sources
 if ($LASTEXITCODE -ne 0) { throw "Compilation échouée." }
 Write-Host "OK  $exe"
+
+# The Claude Code plugin ships the binary itself: its hooks run ${CLAUDE_PLUGIN_ROOT}/app/Minou.exe.
+$pluginApp = Join-Path $root 'plugins\minou\app'
+New-Item -ItemType Directory -Force $pluginApp | Out-Null
+Copy-Item $exe (Join-Path $pluginApp 'Minou.exe') -Force
+Write-Host "OK  $(Join-Path $pluginApp 'Minou.exe')"

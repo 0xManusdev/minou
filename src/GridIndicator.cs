@@ -7,7 +7,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 
-namespace NotchAgent
+namespace Minou
 {
     internal enum IndicatorPattern { Idle, Working, Awaiting, Done, Error }
 

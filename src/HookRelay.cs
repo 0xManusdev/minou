@@ -6,10 +6,10 @@ using System.IO.Pipes;
 using System.Text;
 using System.Threading;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>
-    /// <c>NotchAgent.exe hook</c>: invoked by Claude Code for every hook event. Reads the event from stdin, adds what only
+    /// <c>Minou.exe hook</c>: invoked by Claude Code for every hook event. Reads the event from stdin, adds what only
     /// the hook can know (which claude.exe fired it, which window hosts it, when it fired), and forwards one JSON line to
     /// the app over a named pipe. Fire-and-forget; always exits 0 so it can never block Claude.
     /// </summary>

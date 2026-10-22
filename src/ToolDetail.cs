@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace NotchAgent
+namespace Minou
 {
     /// <summary>Turns a tool call into short, human labels: "Terminal" + "npm run build", "Modification" + "page.tsx".</summary>
     internal static class ToolDetail

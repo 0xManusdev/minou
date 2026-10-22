@@ -1,4 +1,4 @@
-﻿# Builds NotchAgent, installs it for the current user and wires the Claude Code hooks.
+﻿# Builds Minou, installs it for the current user and wires the Claude Code hooks.
 #   powershell -ExecutionPolicy Bypass -File install.ps1
 # Running it again updates in place.
 [CmdletBinding()]
@@ -6,16 +6,16 @@ param([switch]$NoBuild)
 
 $ErrorActionPreference = 'Stop'
 $root = $PSScriptRoot
-$installDir = Join-Path $env:LOCALAPPDATA 'Programs\NotchAgent'
-$exe = Join-Path $installDir 'NotchAgent.exe'
+$installDir = Join-Path $env:LOCALAPPDATA 'Programs\Minou'
+$exe = Join-Path $installDir 'Minou.exe'
 
-Write-Host "NotchAgent pour Windows" -ForegroundColor White
+Write-Host "Minou" -ForegroundColor White
 Write-Host ""
 
 Write-Host "1. Arrêt de l'instance en cours..."
-if (Get-Process NotchAgent -ErrorAction SilentlyContinue) {
+if (Get-Process Minou -ErrorAction SilentlyContinue) {
     if (Test-Path $exe) { & $exe --quit; Start-Sleep -Milliseconds 900 }
-    Get-Process NotchAgent -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
+    Get-Process Minou -ErrorAction SilentlyContinue | Stop-Process -Force -ErrorAction SilentlyContinue
     Start-Sleep -Milliseconds 300
 }
 
@@ -28,11 +28,11 @@ Write-Host "3. Installation dans $installDir"
 New-Item -ItemType Directory -Force $installDir | Out-Null
 # A hook from a running Claude Code session may hold the exe for a few milliseconds: retry briefly.
 for ($attempt = 1; ; $attempt++) {
-    try { Copy-Item (Join-Path $root 'bin\NotchAgent.exe') $exe -Force; break }
+    try { Copy-Item (Join-Path $root 'bin\Minou.exe') $exe -Force; break }
     catch { if ($attempt -ge 20) { throw }; Start-Sleep -Milliseconds 150 }
 }
 
-$menu = Join-Path ([Environment]::GetFolderPath('Programs')) 'NotchAgent.lnk'
+$menu = Join-Path ([Environment]::GetFolderPath('Programs')) 'Minou.lnk'
 $shell = New-Object -ComObject WScript.Shell
 $lnk = $shell.CreateShortcut($menu)
 $lnk.TargetPath = $exe

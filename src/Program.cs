@@ -10,13 +10,13 @@ using System.Windows;
 
 // Targeting 4.8 (not the 4.0 default csc assumes) turns on WPF's per-monitor DPI scaling.
 [assembly: TargetFramework(".NETFramework,Version=v4.8", FrameworkDisplayName = ".NET Framework 4.8")]
-[assembly: AssemblyTitle("NotchAgent")]
-[assembly: AssemblyProduct("NotchAgent for Windows")]
+[assembly: AssemblyTitle("Minou")]
+[assembly: AssemblyProduct("Minou")]
 [assembly: AssemblyDescription("Live Claude Code status in a notch at the top of your screen.")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-namespace NotchAgent
+namespace Minou
 {
     internal static class Program
     {
@@ -53,7 +53,7 @@ namespace NotchAgent
     }
 
     /// <summary>
-    /// Adds or removes NotchAgent's hooks in ~/.claude/settings.json without touching anything else.
+    /// Adds or removes Minou's hooks in ~/.claude/settings.json without touching anything else.
     /// Hooks run in exec form (no shell) and in the background, so they never slow Claude Code down.
     /// </summary>
     internal static class HooksConfig
@@ -90,16 +90,16 @@ namespace NotchAgent
                     entries.Add(new Dictionary<string, object> { { "hooks", new object[] { hook } } });
                     hooks[evt] = entries.ToArray();
                 }
-                Console.WriteLine("Hooks NotchAgent installés pour " + Events.Length + " événements.");
+                Console.WriteLine("Hooks Minou installés pour " + Events.Length + " événements.");
             });
         }
 
         public static int Uninstall()
         {
-            return Edit(hooks => Console.WriteLine("Hooks NotchAgent retirés."));
+            return Edit(hooks => Console.WriteLine("Hooks Minou retirés."));
         }
 
-        /// <summary>Loads settings.json, strips every NotchAgent entry (current and the earlier script version), applies
+        /// <summary>Loads settings.json, strips every Minou entry (current and the earlier script version), applies
         /// <paramref name="change"/>, drops emptied events and saves. A one-time backup is kept next to the file.</summary>
         private static int Edit(Action<Dictionary<string, object>> change)
         {
@@ -110,7 +110,7 @@ namespace NotchAgent
                     ? Json.ParseObject(File.ReadAllText(path)) ?? new Dictionary<string, object>()
                     : new Dictionary<string, object>();
 
-                string backup = path + ".before-notchagent";
+                string backup = path + ".before-minou";
                 if (File.Exists(path) && !File.Exists(backup)) File.Copy(path, backup);
 
                 Dictionary<string, object> hooks = Json.Obj(settings, "hooks") ?? new Dictionary<string, object>();
@@ -137,7 +137,7 @@ namespace NotchAgent
             }
         }
 
-        /// <summary>The event's matcher groups, minus any hook that belongs to NotchAgent.</summary>
+        /// <summary>The event's matcher groups, minus any hook that belongs to Minou.</summary>
         private static List<object> Entries(Dictionary<string, object> hooks, string evt)
         {
             var result = new List<object>();
@@ -163,7 +163,9 @@ namespace NotchAgent
         private static bool IsOurs(Dictionary<string, object> hook)
         {
             string cmd = Json.Str(hook, "command") ?? "";
-            return cmd.IndexOf("NotchAgent.exe", StringComparison.OrdinalIgnoreCase) >= 0
+            // Also matches the names Minou shipped under before: NotchAgent.exe and the ~/.claude/notch script.
+            return cmd.IndexOf("Minou.exe", StringComparison.OrdinalIgnoreCase) >= 0
+                || cmd.IndexOf("NotchAgent.exe", StringComparison.OrdinalIgnoreCase) >= 0
                 || cmd.Replace('\\', '/').IndexOf(".claude/notch/hook.sh", StringComparison.OrdinalIgnoreCase) >= 0;
         }
     }

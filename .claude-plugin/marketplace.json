@@ -1,0 +1,14 @@
+{
+  "name": "minou",
+  "description": "Minou : le statut de Claude Code en direct dans une encoche en haut de l'écran.",
+  "owner": {
+    "name": "TOFA Emmanuel Evamé"
+  },
+  "plugins": [
+    {
+      "name": "minou",
+      "source": "./plugins/minou",
+      "description": "Encoche en haut de l'écran qui suit vos sessions Claude Code : travail, validation requise, terminé. Windows 10/11 uniquement."
+    }
+  ]
+}
