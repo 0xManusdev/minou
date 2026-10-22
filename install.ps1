@@ -31,6 +31,8 @@ for ($attempt = 1; ; $attempt++) {
     try { Copy-Item (Join-Path $root 'bin\Minou.exe') $exe -Force; break }
     catch { if ($attempt -ge 20) { throw }; Start-Sleep -Milliseconds 150 }
 }
+New-Item -ItemType Directory -Force (Join-Path $installDir 'fonts') | Out-Null
+Copy-Item (Join-Path $root 'bin\fonts\*') (Join-Path $installDir 'fonts') -Force
 
 $menu = Join-Path ([Environment]::GetFolderPath('Programs')) 'Minou.lnk'
 $shell = New-Object -ComObject WScript.Shell

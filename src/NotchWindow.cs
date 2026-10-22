@@ -96,7 +96,7 @@ namespace Minou
             Left = -32000;
             Top = -32000;
             UseLayoutRounding = true;
-            FontFamily = new FontFamily("Segoe UI Variable Text, Segoe UI");
+            FontFamily = UiFont;
             TextOptions.SetTextFormattingMode(this, TextFormattingMode.Display);
 
             BuildVisualTree();
@@ -149,7 +149,7 @@ namespace Minou
             bar.Children.Add(text);
 
             count.Foreground = Brushes.White;
-            count.FontFamily = new FontFamily("Cascadia Mono, Consolas");
+            System.Windows.Documents.Typography.SetNumeralAlignment(count, FontNumeralAlignment.Tabular);
             count.FontSize = 13;
             count.FontWeight = FontWeights.SemiBold;
             count.MinWidth = 18;
@@ -177,6 +177,14 @@ namespace Minou
             Content = root;
             ApplyFrame();
         }
+
+        /// <summary>
+        /// SF Pro Display when it's installed on the machine (Apple's licence forbids shipping it), otherwise Inter Display,
+        /// which is bundled in fonts/ next to the exe and drawn after SF Pro.
+        /// </summary>
+        internal static readonly FontFamily UiFont = new FontFamily(
+            new Uri(AppDomain.CurrentDomain.BaseDirectory),
+            "SF Pro Display, ./fonts/#Inter Display, Segoe UI Variable Text, Segoe UI");
 
         private static SolidColorBrush Frozen(Color c)
         {

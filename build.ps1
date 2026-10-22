@@ -69,8 +69,18 @@ $exe = Join-Path $out 'Minou.exe'
 if ($LASTEXITCODE -ne 0) { throw "Compilation échouée." }
 Write-Host "OK  $exe"
 
+# Inter Display (SIL OFL) is loaded from fonts/ next to the exe when SF Pro Display isn't installed.
+$fonts = Join-Path $root 'assets\fonts\*'
+function Copy-Fonts([string]$dir) {
+    $dest = Join-Path $dir 'fonts'
+    New-Item -ItemType Directory -Force $dest | Out-Null
+    Copy-Item $fonts $dest -Force
+}
+Copy-Fonts $out
+
 # The Claude Code plugin ships the binary itself: its hooks run ${CLAUDE_PLUGIN_ROOT}/app/Minou.exe.
 $pluginApp = Join-Path $root 'plugins\minou\app'
 New-Item -ItemType Directory -Force $pluginApp | Out-Null
 Copy-Item $exe (Join-Path $pluginApp 'Minou.exe') -Force
-Write-Host "OK  $(Join-Path $pluginApp 'Minou.exe')"
+Copy-Fonts $pluginApp
+Write-Host "OK  $(Join-Path $pluginApp 'Minou.exe') (+ fonts)"

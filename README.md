@@ -27,6 +27,9 @@ un seul `.exe` natif, aucune dépendance, compilé avec le compilateur C# fourni
   Rien ne tourne au démarrage de Windows (option « Rester ouvert sans Claude Code » dans le menu).
 - **Discrète** : laisse passer les clics hors de la forme, ne prend jamais le focus, absente de la barre des tâches
   et d'Alt+Tab ; ignore le bord haut pendant que tu fais glisser une fenêtre (Snap).
+- **Typographie Mac** : SF Pro Display si elle est installée sur le PC, sinon [Inter Display](https://rsms.me/inter/),
+  embarquée (même dessin, licence libre). SF Pro n'est pas fournie : sa licence Apple interdit de la redistribuer
+  et réserve son usage aux plateformes Apple.
 
 ## Installation
 
@@ -151,4 +154,7 @@ Claude Code ──hook (exec form, async)──▶ Minou.exe hook
 
 Motifs d'animation, silhouette de l'encoche et correspondance événements → états repris de
 [TeamNoSleepz/notch-agent](https://github.com/TeamNoSleepz/notch-agent) (licence MIT).
+
+Police [Inter](https://github.com/rsms/inter) © The Inter Project Authors, sous SIL Open Font License 1.1
+(`assets/fonts/OFL.txt`).
 # minou
