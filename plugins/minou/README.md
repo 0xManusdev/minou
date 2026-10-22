@@ -19,7 +19,8 @@ Run `/reload-plugins` in sessions that are already open. The notch shows up at t
 
 - **Idle**: a thin pill, out of the way.
 - **Working**: the notch widens with an animated pixel grid and the current activity, such as
-  `Terminal · npm run build` or `Edit · page.tsx`, plus the number of sessions.
+  `Terminal · npm run build` or `Edit · page.tsx`, plus the number of sessions and Minou's two little eyes, which
+  blink at a natural, human pace.
 - **Needs approval**: a red grid and the tool waiting for your permission, with an optional Windows sound.
 - **Done**: a green check for a few seconds, then back to the pill.
 

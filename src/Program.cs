@@ -13,8 +13,8 @@ using System.Windows;
 [assembly: AssemblyTitle("Minou")]
 [assembly: AssemblyProduct("Minou")]
 [assembly: AssemblyDescription("Live Claude Code status in a notch at the top of your screen.")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.2.0.0")]
+[assembly: AssemblyFileVersion("1.2.0.0")]
 
 namespace Minou
 {

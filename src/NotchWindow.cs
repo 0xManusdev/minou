@@ -54,6 +54,7 @@ namespace Minou
         private readonly TextBlock title = new TextBlock();
         private readonly TextBlock detail = new TextBlock();
         private readonly TextBlock count = new TextBlock();
+        private readonly Eyes eyes = new Eyes();
         private readonly Grid listHost = new Grid();
         private readonly StackPanel rows = new StackPanel();
         private readonly Dictionary<string, SessionRow> rowCache = new Dictionary<string, SessionRow>();
@@ -122,11 +123,12 @@ namespace Minou
             island.Children.Add(fill);
             island.Children.Add(outline);
 
-            // Bar: indicator | title + detail | session count
+            // Bar: indicator | title + detail | eyes | session count
             bar.Height = BarH;
             bar.VerticalAlignment = VerticalAlignment.Top;
             bar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             bar.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            bar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
             bar.ColumnDefinitions.Add(new ColumnDefinition { Width = GridLength.Auto });
 
             Grid.SetColumn(barIndicator, 0);
@@ -156,8 +158,12 @@ namespace Minou
             count.TextAlignment = TextAlignment.Center;
             count.VerticalAlignment = VerticalAlignment.Center;
             count.Margin = new Thickness(0, 0, 7, 1);
-            Grid.SetColumn(count, 2);
+            Grid.SetColumn(count, 3);
             bar.Children.Add(count);
+
+            eyes.Margin = new Thickness(0, 0, 9, 1);
+            Grid.SetColumn(eyes, 2);
+            bar.Children.Add(eyes);
             island.Children.Add(bar);
 
             // Session list under the bar
@@ -382,7 +388,8 @@ namespace Minou
             var probe = new TextBlock { Text = detail.Text, FontSize = detail.FontSize, FontFamily = FontFamily };
             TextOptions.SetTextFormattingMode(probe, TextFormattingMode.Display);
             probe.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
-            double content = 32 + 6 + title.DesiredSize.Width + (detail.Text.Length > 0 ? 7 + probe.DesiredSize.Width : 0) + 10 + 18 + 7;
+            double content = 32 + 6 + title.DesiredSize.Width + (detail.Text.Length > 0 ? 7 + probe.DesiredSize.Width : 0) + 10
+                + Eyes.TotalWidth + 9 + 18 + 7;
             return Math.Max(232, Math.Min(400, content + 2 * 8 + 12));
         }
 

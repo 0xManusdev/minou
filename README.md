@@ -18,6 +18,8 @@ un seul `.exe` natif, aucune dépendance, compilé avec le compilateur C# fourni
 - **Survol** : l'encoche se déplie et liste les sessions (projet, activité, durée). **Clic sur une session** :
   son terminal revient au premier plan (Windows Terminal, console classique, VS Code, IDE JetBrains…).
 - **Compteur** de sessions à droite, sessions multiples agrégées (la validation en attente passe en priorité).
+- **Deux petits yeux** à côté du compteur, qui clignent comme un humain : paupière qui tombe vite et remonte plus
+  lentement, intervalles irréguliers de 2 à 7 s, parfois un double clignement.
 - **Icône animée dans la zone de notification** : clic gauche → saute à la session qui attend une validation ;
   clic droit → menu (sessions, écran, sons, options).
 - **Sons Windows** optionnels quand Claude a besoin de toi ou termine.
