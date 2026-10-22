@@ -2,10 +2,11 @@
   "name": "minou",
   "displayName": "Minou",
   "version": "1.1.0",
-  "description": "Le statut de Claude Code en direct dans une encoche en haut de l'écran : travail en cours, validation requise, terminé. Clic sur une session pour ramener son terminal. Windows 10/11 uniquement.",
+  "description": "A Mac-style notch at the top of your Windows screen showing Claude Code live: working, needs approval, done. Click a session to bring its terminal forward. Windows 10/11 only.",
   "author": {
     "name": "TOFA Emmanuel Evamé"
   },
+  "license": "MIT",
   "homepage": "https://github.com/0xManusdev/minou",
   "repository": "https://github.com/0xManusdev/minou",
   "keywords": ["windows", "notch", "status", "notification", "tray"]
